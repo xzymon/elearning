@@ -1,0 +1,12 @@
+0.0.1 - Inicjalizacja projektu
+ + szblon dla stron,
+ + css,
+ + deskryptory:
+ 	= elearning-ds - definicja (JBOSS) źródła danych - H2,
+ 	= persistence - źródło danych jndi (Hibernate),
+ 	= faces-config - wskazanie pliku komunikatów : messages.properties, navigation-rules,
+ 	= web - instalacja FacesServlet,
+ 	= jboss-web - na potrzeby przyszłego wykorzystania JAAS,
+ + podstawowe encje - m. in. reprezentujące użytkowników (User),
+ + /META-INF/import.sql - przy inicjalizacji bazy wstawia trzech użytkowników o różnych rolach,
+ + logika do wyświetlenia listy użytkowników.

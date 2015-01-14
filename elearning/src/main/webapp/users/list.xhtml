@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+	<ui:composition template="/resources/templates/greenpiece.xhtml">
+	
+		<ui:define name="pageTitle">
+			
+		</ui:define>
+		<!-- 
+		<ui:define name="navigationBar">
+			
+		</ui:define>
+		 -->
+		<ui:define name="leftPanel"></ui:define>
+		
+		<ui:define name="topTitle"></ui:define>
+		
+		<ui:define name="contentPanel">
+			<h:dataTable value="#{admins}" var="admin">
+				<f:facet name="caption">#{msgs['users.list.dataTable.admins.caption']}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.nickName']}</f:facet>
+					#{admin.nickName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.firstName']}</f:facet>
+					#{admin.firstName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.lastName']}</f:facet>
+					#{admin.lastName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.passwordHash']}</f:facet>
+					#{admin.passwordHash}
+				</h:column>
+			</h:dataTable>
+			
+			<h:dataTable value="#{teachers}" var="teacher">
+				<f:facet name="caption">#{msgs['users.list.dataTable.teachers.caption']}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.nickName']}</f:facet>
+					#{teacher.nickName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.firstName']}</f:facet>
+					#{teacher.firstName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.lastName']}</f:facet>
+					#{teacher.lastName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.passwordHash']}</f:facet>
+					#{teacher.passwordHash}
+				</h:column>
+			</h:dataTable>
+			
+			<h:dataTable value="#{students}" var="student">
+				<f:facet name="caption">#{msgs['users.list.dataTable.students.caption']}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.nickName']}</f:facet>
+					#{student.nickName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.firstName']}</f:facet>
+					#{student.firstName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.lastName']}</f:facet>
+					#{student.lastName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msgs['common.users.passwordHash']}</f:facet>
+					#{student.passwordHash}
+				</h:column>
+			</h:dataTable>
+		</ui:define>
+	</ui:composition>
+
+</html>
