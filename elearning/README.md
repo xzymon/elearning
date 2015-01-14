@@ -1,4 +1,4 @@
-elearning: Assortment of technologies including Arquillian
+elearning: E-Learning Web Application
 ========================
 Author: Szymon Ignaciuk
 Technologies: CDI, JSF, JPA, EJB, BV  
