@@ -47,7 +47,7 @@ public class Resources {
     private EntityManager em;
 
     @Produces
-    public Logger produceLog(InjectionPoint injectionPoint) {
+    public Logger produceLogger(InjectionPoint injectionPoint) {
         return LoggerFactory.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
     }
 

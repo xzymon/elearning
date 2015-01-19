@@ -116,11 +116,11 @@ public abstract class User implements Serializable{
 		
 		typeString = val == null ? null : val.value();
 		switch(typeString){
-		case "Admin": result = UserType.Admin;
-			break;
-		case "Teacher": result = UserType.Teacher;
-			break;
-		default:
+			case "Admin": result = UserType.Admin;
+				break;
+			case "Teacher": result = UserType.Teacher;
+				break;
+			default:
 		}
 		return result;
 	}

@@ -8,14 +8,18 @@
 	<ui:composition template="/resources/templates/greenpiece.xhtml">
 	
 		<ui:define name="pageTitle">
-			
+			#{msgs['test.logged.common.pageTitle']}
 		</ui:define>
 		
 		<ui:define name="leftPanel"></ui:define>
 		
-		<ui:define name="topTitle"></ui:define>
+		<ui:define name="topTitle">
+			#{msgs['test.logged.common.title']}
+		</ui:define>
 		
-		<ui:define name="contentPanel"></ui:define>
+		<ui:define name="contentPanel">
+			#{msgs['test.logged.admin.restricted']}
+		</ui:define>
 	</ui:composition>
 
 </html>

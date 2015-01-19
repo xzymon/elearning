@@ -1,3 +1,31 @@
+0.0.2 - Obsługa logowania, podział widoków względem ról użytkowników (z wykorzystaniem autoryzacji)
+ + Wywołanie JAAS przy żądaniu dostępu do zasobu strzeżonego
+	 = web.xml
+		/web-app/login-config/auth-method - wskazanie sposobu uwierzytelniania -> FORM
+		/web-app/login-config - do wskazania strony formularza wywołującego j_security_check (oraz strony niepowodzenia)
+		/web-app/security-role/role-name* - wskazanie ról w systemie
+		/web-app/security-constraint/web-resource-collection/url-pattern+ - wskazanie URL'i zasobów strzeżonych, metod HTTP
+		/web-app/security-constraint/auth-constraint/role-name*	- wskazanie ról które mają dostęp do zasobu strzeżonego	
+	 = jboss-web.xml
+		/jboss-web/context-root	- wskazanie [po nazwie] modułu podlegającego uwierzytelnianiu przez JAAS [-> nazwa WAR]
+		/jboss-web/security-domain - wskazanie JNDI domeny JAAS (java:/jaas/<nazwa-realm>) - odpowiada domenie zdefiniowanej w standalone.xml
+	 = zasoby strzeżone 
+	 	/logged/*
+	 = strona formularza logowania
+		/WEB-INF/ghosts/login/login.xhtml
+ + Umieszczenie w aplikacji informacji o zalogowanym użytkowniku [com.xzymon.elearning.login]
+	 = SessionController - ziarno CDI @SessionScoped zawierające encję reprezentującą użytkownika
+	 = LoginGuardFilter - filtr [założony na wszystkie zasoby aplikacji] aktualizujący [ewentualnie] użytkownika w SessionController
+ + Zarządzanie zalogowaniem [com.xzymon.elearning.login]
+ 	 = LogoutServlet - wylogowuje użytkownika
+ 	 = DirectLoginServlet - jest zasobem zastrzeżonym (w tej chwili właściwie nie robi nic specyficznego - jedynie przekierowuje obsługę żądania)
+ + Dodanie stron wymagających występowania w specyficznych rolach
+ 	 /logged/admin/restricted.xhtml
+ 	 /logged/teacher/restricted.xhtml
+ 	 /logged/student/restricted.xhtml
+ + Dodanie stron błędów - dla kodów html
+ 	 /WEB-INF/ghosts/error/*
+
 0.0.1 - Inicjalizacja projektu
  + szblon dla stron,
  + css,

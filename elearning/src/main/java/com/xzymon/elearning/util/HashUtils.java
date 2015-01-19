@@ -10,9 +10,12 @@ public class HashUtils {
 	public static MessageDigest getSHA256Algorithm(){
 		MessageDigest md = null;
 		try{
-			MessageDigest.getInstance("SHA-256");
+			md = MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException ex){
 			
+		}
+		if(md==null){
+			System.out.println("md is null!");
 		}
 		return md;
 	}
