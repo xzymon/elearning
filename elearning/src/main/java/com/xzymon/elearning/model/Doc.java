@@ -1,7 +1,7 @@
 package com.xzymon.elearning.model;
 
 import java.io.Serializable;
-import java.sql.Blob;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,14 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
-import javax.persistence.Version;
+
+import org.hibernate.annotations.Immutable;
 
 @Entity
-@Table(name="DOCS", uniqueConstraints={@UniqueConstraint(columnNames={"FILE_NAME","USER_ID"})})
+@Table(name="DOCS", uniqueConstraints={@UniqueConstraint(columnNames={"FILE_NAME","USER_ID","UPLOAD_TIME"})})
 public class Doc implements Serializable{
 	private static final long serialVersionUID = -6363713331727067584L;
 	
@@ -26,18 +27,18 @@ public class Doc implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="DOC_ID")
 	private Long id;
-	@Version
-	@Column(name="VERSION")
-	private Integer version;
-	@Column(name="FILE_NAME", length=64, nullable=false)
+	@Column(name="FILE_NAME", length=255, nullable=false)
 	private String fileName;
-	@Column(name="MIME_TYPE", length=32)
+	@Column(name="MIME_TYPE", length=128)
 	private String mimeType;
 	@Lob
 	@Column(name="BINARY_DATA", nullable=false)
 	private byte[] binaryData;
 	@Column(name="FILE_LENGTH", nullable=false)
 	private Integer fileLength;
+	@Column(name="UPLOAD_TIME", nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date uploadTime;
 	/**
 	 * Wymaga zeby user mial juz tozsamosc bazodanowa.
 	 */
@@ -81,6 +82,15 @@ public class Doc implements Serializable{
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
+	public Date getUploadTime() {
+		return uploadTime;
+	}
+	public void setUploadTime(Date uploadTime) {
+		this.uploadTime = uploadTime;
+	}
+	public Long getUploadTimeAsLong(){
+		return this.getUploadTime().getTime();
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -115,12 +125,9 @@ public class Doc implements Serializable{
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("User:");
+		sb.append("Doc:");
 		if(id!=null){
 			sb.append(" id:").append(id);
-		}
-		if(version!=null){
-			sb.append(" version:").append(version);
 		}
 		if(fileName!=null && !fileName.trim().equals("")){
 			sb.append(" fileName:").append(fileName);
@@ -130,6 +137,9 @@ public class Doc implements Serializable{
 		}
 		if(fileLength!=null){
 			sb.append(" fileLength:").append(fileLength);
+		}
+		if(uploadTime!=null){
+			sb.append(" uploadTime:").append(uploadTime);
 		}
 		return sb.toString();
 	}

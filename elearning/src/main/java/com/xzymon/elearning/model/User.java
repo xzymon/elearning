@@ -43,7 +43,7 @@ public abstract class User implements Serializable{
 	private String nickName;
 	@Column(name="PASSWORD", length=44, nullable=false)
 	private String passwordHash;
-	@OneToMany(mappedBy="owner", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="owner", cascade={CascadeType.ALL}, orphanRemoval=true)
 	private Set<Doc> docs = new HashSet<Doc>();
 	/**
 	 * Zwraca id instancji klasy.

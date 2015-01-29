@@ -19,11 +19,9 @@
   SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules::1" SHAPE="32,273,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="restricted::#logged#authenticated#requireAuth.xhtml"
-    NAME="output" PATH="/logged/authenticated/requireAuth.xhtml"
-    TARGET="rules:#logged#authenticated#requireAuth.xhtml"
-    TITLE="restricted" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="docs::#logged#authenticated#docs.xhtml"
+    NAME="output" PATH="/logged/authenticated/docs.xhtml"
+    TARGET="rules:#logged#authenticated#docs.xhtml" TITLE="docs" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#logged#authenticated#requireAuth.xhtml"
@@ -34,29 +32,27 @@
   SHAPE="288,577,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules::2" SHAPE="32,449,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="restrictedAdmin::#logged#admin#restricted.xhtml" NAME="output"
-    PATH="/logged/admin/restricted.xhtml"
-    TARGET="rules:#logged#admin#restricted.xhtml"
-    TITLE="restrictedAdmin" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="ownerDownload::#ownerDownload.xhtml"
+    NAME="output" PATH="/ownerDownload.xhtml"
+    TARGET="rules:#ownerDownload.xhtml" TITLE="ownerDownload" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules::3" SHAPE="32,561,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="restrictedTeacher::#logged#teacher#restricted.xhtml"
-    NAME="output" PATH="/logged/teacher/restricted.xhtml"
-    TARGET="rules:#logged#teacher#restricted.xhtml"
-    TITLE="restrictedTeacher" model-entity="JSFProcessItemOutput"/>
+    ID="restricted::#logged#authenticated#requireAuth.xhtml"
+    NAME="output" PATH="/logged/authenticated/requireAuth.xhtml"
+    TARGET="rules:#logged#authenticated#requireAuth.xhtml"
+    TITLE="restricted" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules::4" SHAPE="32,897,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="restrictedStudent::#logged#student#restricted.xhtml"
-    NAME="output" PATH="/logged/student/restricted.xhtml"
-    TARGET="rules:#logged#student#restricted.xhtml"
-    TITLE="restrictedStudent" model-entity="JSFProcessItemOutput"/>
+    ID="restrictedAdmin::#logged#admin#restricted.xhtml" NAME="output"
+    PATH="/logged/admin/restricted.xhtml"
+    TARGET="rules:#logged#admin#restricted.xhtml"
+    TITLE="restrictedAdmin" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#logged#teacher#restricted.xhtml"
@@ -65,4 +61,26 @@
   PATH="/logged/admin/restricted.xhtml" SHAPE="240,465,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#logged#student#restricted.xhtml"
   PATH="/logged/student/restricted.xhtml" SHAPE="240,913,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::5" SHAPE="32,1121,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="restrictedTeacher::#logged#teacher#restricted.xhtml"
+    NAME="output" PATH="/logged/teacher/restricted.xhtml"
+    TARGET="rules:#logged#teacher#restricted.xhtml"
+    TITLE="restrictedTeacher" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#logged#authenticated#docs.xhtml"
+  PATH="/logged/authenticated/docs.xhtml" SHAPE="240,801,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::6" SHAPE="32,1345,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::6" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="restrictedStudent::#logged#student#restricted.xhtml"
+    NAME="output" PATH="/logged/student/restricted.xhtml"
+    TARGET="rules:#logged#student#restricted.xhtml"
+    TITLE="restrictedStudent" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ownerDownload.xhtml"
+  PATH="/ownerDownload.xhtml" SHAPE="240,801,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

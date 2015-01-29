@@ -59,6 +59,20 @@
 	
 	<navigation-rule>
 		<navigation-case>
+			<from-outcome>docs</from-outcome>
+			<to-view-id>/logged/authenticated/docs.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>ownerDownload</from-outcome>
+			<to-view-id>/ownerDownload.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
 			<from-outcome>restricted</from-outcome>
 			<to-view-id>/logged/authenticated/requireAuth.xhtml</to-view-id>
 		</navigation-case>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/resources/templates/greenpiece.xhtml">
+
+	<ui:define name="pageTitle">
+			#{msgs['login.pageTitle']}
+		</ui:define>
+
+	<ui:define name="leftPanel"></ui:define>
+
+	<ui:define name="topTitle">
+			#{msgs['login.title']}
+		</ui:define>
+
+	<ui:define name="contentPanel">
+		<h:outputText value="#{msgs['login.instruction']}" />
+		<form method="post" action="j_security_check">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="#{msgs['login.id']}" for="loginFieldPanel" />
+				<h:panelGroup id="loginFieldPanel">
+					<input type="text" id="loginField" name="j_username" />
+					<h:message for="loginField" />
+				</h:panelGroup>
+				<h:outputLabel value="#{msgs['login.pwd']}" for="pwdFieldPanel" />
+				<h:panelGroup id="pwdFieldPanel">
+					<input type="password" id="pwdField" name="j_password" />
+					<h:message for="pwdField" />
+				</h:panelGroup>
+			</h:panelGrid>
+			<input type="submit" value="#{msgs['login.submit']}" />
+		</form>
+	</ui:define>
+</ui:composition>
+
+</html>
