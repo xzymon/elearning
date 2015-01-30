@@ -6,36 +6,61 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet>
-  	<description>Performs logging the user out</description>
-  	<servlet-name>Logout Servlet</servlet-name>
-  	<servlet-class>com.xzymon.elearning.login.LogoutServlet</servlet-class>
-  	<init-param>
-  		<description>Page to redirect after logout</description>
-  		<param-name>afterLogoutPage</param-name>
-  		<param-value>/index.xhtml</param-value>
-  	</init-param>
+    <description>Performs logging the user out</description>
+    <servlet-name>Logout Servlet</servlet-name>
+    <servlet-class>com.xzymon.elearning.login.LogoutServlet</servlet-class>
+    <init-param>
+      <description>Page to redirect after logout</description>
+      <param-name>afterLogoutPage</param-name>
+      <param-value>/index.xhtml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet>
-  	<description>Invokation of this servlet forces invocation of JAAS</description>
-  	<servlet-name>Direct Login Servlet</servlet-name>
-  	<servlet-class>com.xzymon.elearning.login.DirectLoginServlet</servlet-class>
-  	<init-param>
-  		<description>Indicates where to move on if logging in was successful</description>
-  		<param-name>afterLoginPage</param-name>
-  		<param-value>/index.xhtml</param-value>
-  	</init-param>
+    <description>Invokation of this servlet forces invocation of JAAS</description>
+    <servlet-name>Direct Login Servlet</servlet-name>
+    <servlet-class>com.xzymon.elearning.login.DirectLoginServlet</servlet-class>
+    <init-param>
+      <description>Indicates where to move on if logging in was successful</description>
+      <param-name>afterLoginPage</param-name>
+      <param-value>/index.xhtml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>File Upload Servlet</servlet-name>
+    <servlet-class>com.xzymon.elearning.servlet.FileUploadServlet</servlet-class>
+    <init-param>
+      <description>Path in application to forward after uploading a file</description>
+      <param-name>myDocs</param-name>
+      <param-value>/logged/authenticated/docs.xhtml</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>Owner File Download Servlet</servlet-name>
+    <servlet-class>com.xzymon.elearning.servlet.OwnerFileDownloadServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>Logout Servlet</servlet-name>
-  	<url-pattern>/logout.xhtml</url-pattern>
+    <servlet-name>Logout Servlet</servlet-name>
+    <url-pattern>/logout.xhtml</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>Direct Login Servlet</servlet-name>
-  	<url-pattern>/login.xhtml</url-pattern>
+    <servlet-name>Direct Login Servlet</servlet-name>
+    <url-pattern>/login.xhtml</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>File Upload Servlet</servlet-name>
+    <url-pattern>/fileUpload.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Owner File Download Servlet</servlet-name>
+  	<url-pattern>/ownerDownload.do</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.xhtml</welcome-file>
@@ -77,38 +102,38 @@
     </auth-constraint>
   </security-constraint>
   <security-constraint>
-  	<web-resource-collection>
-  		<web-resource-name>Protected Area - Role Admin</web-resource-name>
-  		<url-pattern>/logged/admin/*</url-pattern>
-  	</web-resource-collection>
-  	<auth-constraint>
-  		<role-name>Admin</role-name>
-  	</auth-constraint>
+    <web-resource-collection>
+      <web-resource-name>Protected Area - Role Admin</web-resource-name>
+      <url-pattern>/logged/admin/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Admin</role-name>
+    </auth-constraint>
   </security-constraint>
   <security-constraint>
-  	<web-resource-collection>
-  		<web-resource-name>Protected Area - Role Teacher</web-resource-name>
-  		<url-pattern>/logged/teacher/*</url-pattern>
-  	</web-resource-collection>
-  	<auth-constraint>
-  		<role-name>Teacher</role-name>
-  	</auth-constraint>
+    <web-resource-collection>
+      <web-resource-name>Protected Area - Role Teacher</web-resource-name>
+      <url-pattern>/logged/teacher/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Teacher</role-name>
+    </auth-constraint>
   </security-constraint>
   <security-constraint>
-  	<web-resource-collection>
-  		<web-resource-name>Protected Area - Role Student</web-resource-name>
-  		<url-pattern>/logged/student/*</url-pattern>
-  	</web-resource-collection>
-  	<auth-constraint>
-  		<role-name>Student</role-name>
-  	</auth-constraint>
+    <web-resource-collection>
+      <web-resource-name>Protected Area - Role Student</web-resource-name>
+      <url-pattern>/logged/student/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Student</role-name>
+    </auth-constraint>
   </security-constraint>
   <error-page>
-  	<error-code>403</error-code>
-  	<location>/WEB-INF/ghosts/error/403.xhtml</location>
+    <error-code>403</error-code>
+    <location>/WEB-INF/ghosts/error/403.xhtml</location>
   </error-page>
   <error-page>
-  	<error-code>500</error-code>
-  	<location>/WEB-INF/ghosts/error/500.xhtml</location>
+    <error-code>500</error-code>
+    <location>/WEB-INF/ghosts/error/500.xhtml</location>
   </error-page>
 </web-app>

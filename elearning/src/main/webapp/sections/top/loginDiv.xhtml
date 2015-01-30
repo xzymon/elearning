@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+	<div>
+		<h:panelGroup rendered="#{sessionController.loggedIn eq false}">
+			<h:outputText
+				value="#{msgs['template.loginDiv.unknownUser.welcome']}" />
+			<h:link outcome="login"
+				value="#{msgs['template.loginDiv.unknownUser.link']}" />
+		</h:panelGroup>
+		<h:panelGroup rendered="#{sessionController.loggedIn eq true}">
+			<h:outputFormat value="#{msgs['template.loginDiv.knownUser.welcome']}">
+				<f:param value="#{sessionController.userName}"/>
+				<f:param value="#{sessionController.userNick}"/>
+			</h:outputFormat>
+			<h:link outcome="logout"
+				value="#{msgs['template.loginDiv.knownUser.link']}" />
+		</h:panelGroup>
+	</div>
+</ui:composition>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+	<h:panelGroup
+		rendered="#{sessionController.loggedIn}">
+		<h2>Common</h2>
+		<div class="sidemenu">
+			<ul>
+				<li><h:link outcome="docs" value="#{msgs['sections.left.common.docs']}" /></li>
+			</ul>
+		</div>
+		<h:panelGroup
+			rendered="#{sessionController.authenticatedUser.typeFromDiscriminatorValue eq 'Admin'}">
+			<h2>Menu 1</h2>
+			<div class="sidemenu">
+				<ul>
+					<li><a href="#">Nothing</a></li>
+				</ul>
+			</div>
+		</h:panelGroup>
+		<h:panelGroup
+			rendered="#{sessionController.authenticatedUser.typeFromDiscriminatorValue eq 'Teacher'}">
+			<h2>Menu 2</h2>
+			<div class="sidemenu">
+				<ul>
+					<li><a href="#">Nothing</a></li>
+				</ul>
+			</div>
+		</h:panelGroup>
+		<h:panelGroup
+			rendered="#{sessionController.authenticatedUser.typeFromDiscriminatorValue eq 'Student'}">
+			<h2>Menu 3</h2>
+			<div class="sidemenu">
+				<ul>
+					<li><a href="#">Nothing</a></li>
+				</ul>
+			</div>
+		</h:panelGroup>
+	</h:panelGroup>
+</ui:composition>
+
+</html>

@@ -13,5 +13,16 @@
             <password>elearning</password>
         </security>
     </datasource>
+    <!-- 
+    <datasource jta="true" jndi-name="java:jboss/datasources/elearningDS"
+        pool-name="elearningPU" enabled="true" use-java-context="true">
+        <connection-url>jdbc:oracle:thin:@192.168.58.101:1521:orcl</connection-url>
+        <driver>oracle</driver>
+        <security>
+            <user-name>elearningjsf</user-name>
+            <password>elearningjsf</password>
+        </security>
+    </datasource>
+     -->
 </datasources>
  

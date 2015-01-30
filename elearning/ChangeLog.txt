@@ -1,3 +1,19 @@
+0.0.3 - Upload i download plików przez użytkowników wszystkich ról
+	+ EJB do operacji na encji Doc [com.xzymon.elearning.service]
+		= DocServiceBusiness - interface definiujący wszystkie metody biznesowe
+		= DocServiceLocal - interface @Local dziedziczący po DocServiceBusiness
+		= DocServiceBean - implementacja EJB dla interfejsu DocServiceBusiness
+	+ kontrolery - ziarna CDI do wykorzystania w JSF [com.xzymon.elearning.controller]
+		= ApplicationController - przechwuje informację o nazwie kontekstu [dla konstruowania "statycznych" linków], ustawianą przez weblistener.ApplicationListener
+		= DocsBean - dostarcza operacji do zarządzania plikami [encjami Doc] w widoku
+	+ servlety - ładują do bazy/zwracają z bazy pliki [encje Doc] [com.xzymon.elearning.servlet]
+		= FileUploadServlet - przeprowadza załadowanie pliku do bazy - wywołuje metodę EJB
+		= OwnerFileDownloadServlet - ściąga plik(którego właścicielem jest zalogowany użytkownik) z bazy
+	+ listener [com.xzymon.elearning.weblistener]
+		= ApplicationListener - implementuje ServletContextListener, ustawia właściwość odpowiadającą nazwie aplikacji w ApplicationController
+	+ użyteczności [com.xzymon.elearning.util]
+		= HttpPartUtils - tworzy mapy dla wartości z nagłówków obiektów Part
+
 0.0.2 - Obsługa logowania, podział widoków względem ról użytkowników (z wykorzystaniem autoryzacji)
  + Wywołanie JAAS przy żądaniu dostępu do zasobu strzeżonego
 	 = web.xml
@@ -14,7 +30,7 @@
 	 = strona formularza logowania
 		/WEB-INF/ghosts/login/login.xhtml
  + Umieszczenie w aplikacji informacji o zalogowanym użytkowniku [com.xzymon.elearning.login]
-	 = SessionController - ziarno CDI @SessionScoped zawierające encję reprezentującą użytkownika
+	 = LoginController - interface dla ziarna CDI @SessionScoped [controller.SessionController] zawierające encję reprezentującą użytkownika
 	 = LoginGuardFilter - filtr [założony na wszystkie zasoby aplikacji] aktualizujący [ewentualnie] użytkownika w SessionController
  + Zarządzanie zalogowaniem [com.xzymon.elearning.login]
  	 = LogoutServlet - wylogowuje użytkownika

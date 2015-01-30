@@ -4,7 +4,7 @@
 
     <groupId>com.xzymon</groupId>
     <artifactId>elearning</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <packaging>war</packaging>
     <name>elearning</name>
     <description>E-Learning System Project</description>
@@ -129,6 +129,12 @@
         </dependency>
 
         <!-- Now we declare any tools needed -->
+		<!-- Hibernate (non-JPA) annotations -->
+		<dependency>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate-annotations</artifactId>
+        	<version>3.5.6-Final</version>
+        </dependency>
 
         <!-- Annotation processor to generate the JPA 2.0 metamodel classes for 
             typesafe criteria queries -->
