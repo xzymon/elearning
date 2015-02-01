@@ -46,6 +46,9 @@
     PATH="/logged/admin/restricted.xhtml"
     TARGET="rules:#logged#admin#restricted.xhtml"
     TITLE="restrictedAdmin" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="manageUsers::#logged#admin#users.xhtml"
+    NAME="output1" PATH="/logged/admin/users.xhtml"
+    TARGET="rules:#logged#admin#users.xhtml" TITLE="manageUsers" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules::4" SHAPE="32,897,0,0" model-entity="JSFProcessGroup">
@@ -74,4 +77,6 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#logged#authenticated#docs.xhtml"
   PATH="/logged/authenticated/docs.xhtml" SHAPE="240,801,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#logged#admin#users.xhtml"
+  PATH="/logged/admin/users.xhtml" SHAPE="256,833,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

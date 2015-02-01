@@ -16,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -29,7 +31,8 @@ import com.xzymon.elearning.util.HashUtils;
 public abstract class User implements Serializable{
 	private static final long serialVersionUID = -6978273779053967896L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="usersSeqGen")
+	@SequenceGenerator(name="usersSeqGen", initialValue=16)
 	@Column(name="USER_ID")
 	private Long id;
 	@Version
@@ -45,6 +48,8 @@ public abstract class User implements Serializable{
 	private String passwordHash;
 	@OneToMany(mappedBy="owner", cascade={CascadeType.ALL}, orphanRemoval=true)
 	private Set<Doc> docs = new HashSet<Doc>();
+	@Column(name="ENABLED")
+	private Boolean enabled;
 	/**
 	 * Zwraca id instancji klasy.
 	 * @return identyfikator uzytkownika
@@ -175,6 +180,9 @@ public abstract class User implements Serializable{
 		}
 		if(passwordHash!=null && !passwordHash.trim().equals("")){
 			sb.append(" passwordHash:").append(passwordHash);
+		}
+		if(enabled!=null){
+			sb.append(" enabled:").append(enabled);
 		}
 		return sb.toString();
 	}

@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<f:metadata>
+		<f:viewParam name="ea" value="#{adminUsersBean.adminsPage}"/>
+		<f:viewParam name="da" value="#{adminUsersBean.adminsDisabledPage}"/>
+		<f:viewParam name="et" value="#{adminUsersBean.teachersPage}"/>
+		<f:viewParam name="dt" value="#{adminUsersBean.teachersDisabledPage}"/>
+		<f:viewParam name="es" value="#{adminUsersBean.studentsPage}"/>
+		<f:viewParam name="ds" value="#{adminUsersBean.studentsDisabledPage}"/>
+	</f:metadata>
+
+<ui:composition template="/resources/templates/greenpiece.xhtml">
+
+	
+
+	<ui:define name="pageTitle">
+
+	</ui:define>
+	<!-- 
+		<ui:define name="navigationBar">
+			
+		</ui:define>
+		 -->
+	<ui:define name="leftPanel"></ui:define>
+
+	<ui:define name="topTitle"></ui:define>
+
+	<ui:define name="contentPanel">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="#{msgs['admin.users.role.caption']}" />
+				<h:selectOneMenu value="#{adminUsersBean.roleByNo}">
+					<f:selectItems value="#{adminUsersBean.viewRolesMap}" />
+				</h:selectOneMenu>
+				<h:outputText value="#{msgs['common.users.firstName']}" />
+				<h:panelGroup>
+					<h:inputText id="newFirstName"
+						value="#{adminUsersBean.newFirstName}"
+						label="#{msgs['common.users.firstName']}" />
+					<h:message for="newFirstName" />
+				</h:panelGroup>
+				<h:outputText value="#{msgs['common.users.lastName']}" />
+				<h:panelGroup>
+					<h:inputText id="newLastName" value="#{adminUsersBean.newLastName}"
+						label="#{msgs['common.users.lastName']}" />
+					<h:message for="newLastName" />
+				</h:panelGroup>
+				<h:outputText value="#{msgs['common.users.nickName']}" />
+				<h:panelGroup>
+					<h:inputText id="newNickName" value="#{adminUsersBean.newNickName}"
+						label="#{msgs['common.users.nickName']}" />
+					<h:message for="newNickName" />
+				</h:panelGroup>
+			</h:panelGrid>
+			<h:commandButton action="#{adminUsersBean.createNewUser()}"
+				value="#{msgs['admin.users.new.submit']}" />
+
+
+			<div>
+				<h:dataTable value="#{adminUsersBean.enabledAdmins}" var="admin">
+					<f:facet name="caption">#{msgs['admin.users.enabledAdmins.dataTable.caption']}</f:facet>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.nickName']}</f:facet>
+						#{admin.nickName}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.previousPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.adminsPage>1}">
+								<f:param name="ea" value="#{adminUsersBean.adminsPage-1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.firstName']}</f:facet>
+						#{admin.firstName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.lastName']}</f:facet>
+						#{admin.lastName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.passwordHash']}</f:facet>
+						#{admin.passwordHash}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.nextPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.renderNextEnabledAdmins()}">
+								<f:param name="ea" value="#{adminUsersBean.adminsPage+1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+				</h:dataTable>
+				<h:dataTable value="#{adminUsersBean.disabledAdmins}" var="admin">
+					<f:facet name="caption">#{msgs['admin.users.disabledAdmins.dataTable.caption']}</f:facet>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.nickName']}</f:facet>
+						#{admin.nickName}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.previousPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.adminsDisabledPage>1}">
+								<f:param name="da" value="#{adminUsersBean.adminsDisabledPage-1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.firstName']}</f:facet>
+						#{admin.firstName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.lastName']}</f:facet>
+						#{admin.lastName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.passwordHash']}</f:facet>
+						#{admin.passwordHash}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.nextPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.renderNextDisabledAdmins()}">
+								<f:param name="da" value="#{adminUsersBean.adminsDisabledPage+1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+				</h:dataTable>
+			</div>
+			<div>
+				<h:dataTable value="#{adminUsersBean.enabledTeachers}" var="teacher">
+					<f:facet name="caption">#{msgs['admin.users.enabledTeachers.dataTable.caption']}</f:facet>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.nickName']}</f:facet>
+						#{teacher.nickName}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.previousPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.teachersPage>1}">
+								<f:param name="et" value="#{adminUsersBean.teachersPage-1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.firstName']}</f:facet>
+						#{teacher.firstName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.lastName']}</f:facet>
+						#{teacher.lastName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.passwordHash']}</f:facet>
+						#{teacher.passwordHash}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.nextPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.renderNextEnabledTeachers()}">
+								<f:param name="et" value="#{adminUsersBean.teachersPage+1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+				</h:dataTable>
+				<h:dataTable value="#{adminUsersBean.disabledTeachers}"
+					var="teacher">
+					<f:facet name="caption">#{msgs['admin.users.disabledTeachers.dataTable.caption']}</f:facet>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.nickName']}</f:facet>
+						#{teacher.nickName}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.previousPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.teachersDisabledPage>1}">
+								<f:param name="dt" value="#{adminUsersBean.teachersDisabledPage-1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.firstName']}</f:facet>
+						#{teacher.firstName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.lastName']}</f:facet>
+						#{teacher.lastName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.passwordHash']}</f:facet>
+						#{teacher.passwordHash}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.nextPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.renderNextDisabledTeachers()}">
+								<f:param name="dt" value="#{adminUsersBean.teachersDisabledPage+1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+				</h:dataTable>
+			</div>
+			<div>
+				<h:dataTable value="#{adminUsersBean.enabledStudents}" var="student">
+					<f:facet name="caption">#{msgs['admin.users.enabledStudents.dataTable.caption']}</f:facet>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.nickName']}</f:facet>
+						#{student.nickName}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.previousPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.studentsPage>1}">
+								<f:param name="es" value="#{adminUsersBean.studentsPage-1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.firstName']}</f:facet>
+						#{student.firstName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.lastName']}</f:facet>
+						#{student.lastName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.passwordHash']}</f:facet>
+						#{student.passwordHash}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.nextPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.renderNextEnabledStudents()}">
+								<f:param name="es" value="#{adminUsersBean.studentsPage+1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+				</h:dataTable>
+				<h:dataTable value="#{adminUsersBean.disabledStudents}"
+					var="student">
+					<f:facet name="caption">#{msgs['admin.users.disabledStudents.dataTable.caption']}</f:facet>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.nickName']}</f:facet>
+						#{student.nickName}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.previousPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.studentsDisabledPage>1}">
+								<f:param name="ds" value="#{adminUsersBean.studentsDisabledPage-1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.firstName']}</f:facet>
+						#{student.firstName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.lastName']}</f:facet>
+						#{student.lastName}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msgs['common.users.passwordHash']}</f:facet>
+						#{student.passwordHash}
+						<f:facet name="footer">
+							<h:link value="#{msgs['admin.users.dataTable.nextPage']}" 
+								outcome="manageUsers" includeViewParams="true" rendered="#{adminUsersBean.renderNextDisabledStudents()}">
+								<f:param name="ds" value="#{adminUsersBean.studentsDisabledPage+1}" />
+							</h:link>
+						</f:facet>
+					</h:column>
+				</h:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>
